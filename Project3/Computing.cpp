@@ -6,29 +6,29 @@
 #include "Menu.h"
 using namespace std;
 
-// Проверка корректности вводимого значения переменной типа double
+// РџСЂРѕРІРµСЂРєР° РєРѕСЂСЂРµРєС‚РЅРѕСЃС‚Рё РІРІРѕРґРёРјРѕРіРѕ Р·РЅР°С‡РµРЅРёСЏ РїРµСЂРµРјРµРЅРЅРѕР№ С‚РёРїР° double
 double NumInDouble() {
 	double variable;
 	while (!(cin >> variable) || (cin.peek() != '\n')) {
 		cin.clear();
 		while (cin.get() != '\n');
-		cout << "Некорректно введенные данные. Пожалуйста, введите цифру: " << endl;
+		cout << "РќРµРєРѕСЂСЂРµРєС‚РЅРѕ РІРІРµРґРµРЅРЅС‹Рµ РґР°РЅРЅС‹Рµ. РџРѕР¶Р°Р»СѓР№СЃС‚Р°, РІРІРµРґРёС‚Рµ С†РёС„СЂСѓ: " << endl;
 	}
 	return variable;
 }
 
-// Проверка корректности вводимого значения переменной типа int
+// РџСЂРѕРІРµСЂРєР° РєРѕСЂСЂРµРєС‚РЅРѕСЃС‚Рё РІРІРѕРґРёРјРѕРіРѕ Р·РЅР°С‡РµРЅРёСЏ РїРµСЂРµРјРµРЅРЅРѕР№ С‚РёРїР° int
 int NumInInt() {
 	int variable;
 	while (!(cin >> variable) || (cin.peek() != '\n')) {
 		cin.clear();
 		while (cin.get() != '\n');
-		cout << "Некорректно введенные данные. Пожалуйста, введите цифру: " << endl;
+		cout << "РќРµРєРѕСЂСЂРµРєС‚РЅРѕ РІРІРµРґРµРЅРЅС‹Рµ РґР°РЅРЅС‹Рµ. РџРѕР¶Р°Р»СѓР№СЃС‚Р°, РІРІРµРґРёС‚Рµ С†РёС„СЂСѓ: " << endl;
 	}
 	return variable;
 }
 
-// Пузырьковая сортировка
+// РџСѓР·С‹СЂСЊРєРѕРІР°СЏ СЃРѕСЂС‚РёСЂРѕРІРєР°
 ResultCount BubbleSort(double** matrix, int m, int n, ResultCount bubbleCount) {
 	double temp;
 	int i, j;
@@ -56,7 +56,7 @@ ResultCount BubbleSort(double** matrix, int m, int n, ResultCount bubbleCount) {
 			}
 		}
 	}
-	cout << "Пузырьковая сортировка:" << endl;
+	cout << "РџСѓР·С‹СЂСЊРєРѕРІР°СЏ СЃРѕСЂС‚РёСЂРѕРІРєР°:" << endl;
 	for (i = 0; i < m; i++) {
 		for (j = 0; j < n; j++) {
 			cout << setw(6) << tempMatrix[i][j];
@@ -69,7 +69,7 @@ ResultCount BubbleSort(double** matrix, int m, int n, ResultCount bubbleCount) {
 	return bubbleCount;
 }
 
-// Возвращение максимального значения
+// Р’РѕР·РІСЂР°С‰РµРЅРёРµ РјР°РєСЃРёРјР°Р»СЊРЅРѕРіРѕ Р·РЅР°С‡РµРЅРёСЏ
 int Maximum(int first, int second) {
 	if (first > second)
 		return first;
@@ -77,7 +77,7 @@ int Maximum(int first, int second) {
 		return second;
 }
 
-// Возвращение минимального значения
+// Р’РѕР·РІСЂР°С‰РµРЅРёРµ РјРёРЅРёРјР°Р»СЊРЅРѕРіРѕ Р·РЅР°С‡РµРЅРёСЏ
 int Minimum(int first, int second) {
 	if (first > second)
 		return second;
@@ -85,7 +85,7 @@ int Minimum(int first, int second) {
 		return first;
 }
 
-// Сортировка отбором
+// РЎРѕСЂС‚РёСЂРѕРІРєР° РѕС‚Р±РѕСЂРѕРј
 ResultCount SelectionSort(double** matrix, int m, int n, ResultCount selectionCount) {
 	int i, j, k;
 	double **tempMatrix = new double*[m];
@@ -110,7 +110,7 @@ ResultCount SelectionSort(double** matrix, int m, int n, ResultCount selectionCo
 			}
 		}
 	}
-	cout << "Cортировка отбором:" << endl;
+	cout << "CРѕСЂС‚РёСЂРѕРІРєР° РѕС‚Р±РѕСЂРѕРј:" << endl;
 	for (i = 0; i < m; i++) {
 		for (j = 0; j < n; j++) {
 			cout << setw(6) << tempMatrix[i][j];
@@ -123,7 +123,7 @@ ResultCount SelectionSort(double** matrix, int m, int n, ResultCount selectionCo
 	return selectionCount;
 }
 
-// Сортировка вставкой
+// РЎРѕСЂС‚РёСЂРѕРІРєР° РІСЃС‚Р°РІРєРѕР№
 ResultCount InsertionSort(double** matrix, int m, int n, ResultCount insertionCount) {
 	int i, j, k;
 	double temp = 0;
@@ -152,7 +152,7 @@ ResultCount InsertionSort(double** matrix, int m, int n, ResultCount insertionCo
 			tempMatrix[k + 1][j] = temp;
 		}
 	}
-	cout << "Cортировка вставкой:" << endl;
+	cout << "CРѕСЂС‚РёСЂРѕРІРєР° РІСЃС‚Р°РІРєРѕР№:" << endl;
 	for (i = 0; i < m; i++) {
 		for (j = 0; j < n; j++) {
 			cout << setw(6) << tempMatrix[i][j];
@@ -165,7 +165,7 @@ ResultCount InsertionSort(double** matrix, int m, int n, ResultCount insertionCo
 	return insertionCount;
 }
 
-// Сортировка Шелла
+// РЎРѕСЂС‚РёСЂРѕРІРєР° РЁРµР»Р»Р°
 ResultCount ShellSort(double** matrix, int m, int n, ResultCount shellCount) {
 	int i, j, k, l;
 	double temp = 0;
@@ -196,7 +196,7 @@ ResultCount ShellSort(double** matrix, int m, int n, ResultCount shellCount) {
 			}
 		}
 	}
-	cout << "Cортировка Шелла:" << endl;
+	cout << "CРѕСЂС‚РёСЂРѕРІРєР° РЁРµР»Р»Р°:" << endl;
 	for (i = 0; i < m; i++) {
 		for (j = 0; j < n; j++) {
 			cout << setw(6) << tempMatrix[i][j];
@@ -209,7 +209,7 @@ ResultCount ShellSort(double** matrix, int m, int n, ResultCount shellCount) {
 	return shellCount;
 }
 
-// Быстрая сортировка
+// Р‘С‹СЃС‚СЂР°СЏ СЃРѕСЂС‚РёСЂРѕРІРєР°
 ResultCount QuickSort(double** matrix, int m, int n, int left, int right, ResultCount quickCount) {
 	int i, j;
 	double **tempMatrix = new double*[m];
@@ -223,7 +223,7 @@ ResultCount QuickSort(double** matrix, int m, int n, int left, int right, Result
 	for (j = 0; j < n; j++) {
 		quickCount = QuickSort_working(tempMatrix, j, n, left, right, quickCount);
 	}
-	cout << "Быстрая сортировка:" << endl;
+	cout << "Р‘С‹СЃС‚СЂР°СЏ СЃРѕСЂС‚РёСЂРѕРІРєР°:" << endl;
 	for (i = 0; i < m; i++) {
 		for (j = 0; j < n; j++) {
 			cout << setw(6) << tempMatrix[i][j];
@@ -236,7 +236,7 @@ ResultCount QuickSort(double** matrix, int m, int n, int left, int right, Result
 	return quickCount;
 }
 
-// Быстрая сортировка для одного столбца
+// Р‘С‹СЃС‚СЂР°СЏ СЃРѕСЂС‚РёСЂРѕРІРєР° РґР»СЏ РѕРґРЅРѕРіРѕ СЃС‚РѕР»Р±С†Р°
 ResultCount QuickSort_working(double** tempMatrix, int j, int n, int left, int right, ResultCount quickCount) {
 	int l = left;
 	int r = right;
@@ -277,7 +277,7 @@ ResultCount QuickSort_working(double** tempMatrix, int j, int n, int left, int r
 	return quickCount;
 }
 
-// Результирующая функция, включающая в себя все сортировки
+// Р РµР·СѓР»СЊС‚РёСЂСѓСЋС‰Р°СЏ С„СѓРЅРєС†РёСЏ, РІРєР»СЋС‡Р°СЋС‰Р°СЏ РІ СЃРµР±СЏ РІСЃРµ СЃРѕСЂС‚РёСЂРѕРІРєРё
 void Sorting(double** matrix, int m, int n) {
 	ResultCount bubleCount, selectionCount, insertionCount, shellCount, quickCount;
 	bubleCount.comparison = 0;
@@ -295,19 +295,19 @@ void Sorting(double** matrix, int m, int n) {
 	insertionCount = InsertionSort(matrix, m, n, insertionCount);
 	shellCount = ShellSort(matrix, m, n, shellCount);
 	quickCount = QuickSort(matrix, m, n, 0, (m-1), quickCount);
-	cout << "Результат сортировки разными методами:" << endl;
-	cout << "Метод сортировки" << setw(30) << "Число сравнений" << setw(30) << "Число перестановок" << endl;
-	cout << "Пузырьковая сортировка" << setw(16) << bubleCount.comparison << setw(30) << bubleCount.permutation << endl;
-	cout << "Сортировка отбором" << setw(20) << selectionCount.comparison << setw(30) << selectionCount.permutation << endl;
-	cout << "Сортировка вставкой" << setw(19) << insertionCount.comparison << setw(30) << insertionCount.permutation << endl;
-	cout << "Сортировка Шелла" << setw(22) << shellCount.comparison << setw(30) << shellCount.permutation << endl;
-	cout << "Быстрая сортировка" << setw(20) << quickCount.comparison << setw(30) << quickCount.permutation << endl;
-	if (MenuResult() == true) { // Возможность вывода результата
+	cout << "Р РµР·СѓР»СЊС‚Р°С‚ СЃРѕСЂС‚РёСЂРѕРІРєРё СЂР°Р·РЅС‹РјРё РјРµС‚РѕРґР°РјРё:" << endl;
+	cout << "РњРµС‚РѕРґ СЃРѕСЂС‚РёСЂРѕРІРєРё" << setw(30) << "Р§РёСЃР»Рѕ СЃСЂР°РІРЅРµРЅРёР№" << setw(30) << "Р§РёСЃР»Рѕ РїРµСЂРµСЃС‚Р°РЅРѕРІРѕРє" << endl;
+	cout << "РџСѓР·С‹СЂСЊРєРѕРІР°СЏ СЃРѕСЂС‚РёСЂРѕРІРєР°" << setw(16) << bubleCount.comparison << setw(30) << bubleCount.permutation << endl;
+	cout << "РЎРѕСЂС‚РёСЂРѕРІРєР° РѕС‚Р±РѕСЂРѕРј" << setw(20) << selectionCount.comparison << setw(30) << selectionCount.permutation << endl;
+	cout << "РЎРѕСЂС‚РёСЂРѕРІРєР° РІСЃС‚Р°РІРєРѕР№" << setw(19) << insertionCount.comparison << setw(30) << insertionCount.permutation << endl;
+	cout << "РЎРѕСЂС‚РёСЂРѕРІРєР° РЁРµР»Р»Р°" << setw(22) << shellCount.comparison << setw(30) << shellCount.permutation << endl;
+	cout << "Р‘С‹СЃС‚СЂР°СЏ СЃРѕСЂС‚РёСЂРѕРІРєР°" << setw(20) << quickCount.comparison << setw(30) << quickCount.permutation << endl;
+	if (MenuResult() == true) { // Р’РѕР·РјРѕР¶РЅРѕСЃС‚СЊ РІС‹РІРѕРґР° СЂРµР·СѓР»СЊС‚Р°С‚Р°
 		FileWriteResult(m, n, matrix, bubleCount, selectionCount, insertionCount, shellCount, quickCount);
 	}
 }
 
-// Пузырьковая сортировка для тестирования
+// РџСѓР·С‹СЂСЊРєРѕРІР°СЏ СЃРѕСЂС‚РёСЂРѕРІРєР° РґР»СЏ С‚РµСЃС‚РёСЂРѕРІР°РЅРёСЏ
 double** BubbleSort_MatrixExport(double** tempMatrix, int m, int n) {
 	double temp;
 	int i, j;
@@ -328,7 +328,7 @@ double** BubbleSort_MatrixExport(double** tempMatrix, int m, int n) {
 	return tempMatrix;
 }
 
-// Сортировка отбором для тестирования
+// РЎРѕСЂС‚РёСЂРѕРІРєР° РѕС‚Р±РѕСЂРѕРј РґР»СЏ С‚РµСЃС‚РёСЂРѕРІР°РЅРёСЏ
 double** SelectionSort_MatrixExport(double** tempMatrix, int m, int n) {
 	int i, j, k;
 	double temp = tempMatrix[0][0];
@@ -346,7 +346,7 @@ double** SelectionSort_MatrixExport(double** tempMatrix, int m, int n) {
 	return tempMatrix;
 }
 
-// Сортировка вставкой для тестирования
+// РЎРѕСЂС‚РёСЂРѕРІРєР° РІСЃС‚Р°РІРєРѕР№ РґР»СЏ С‚РµСЃС‚РёСЂРѕРІР°РЅРёСЏ
 double** InsertionSort_MatrixExport(double** tempMatrix, int m, int n) {
 	int i, j, k;
 	double temp = 0;
@@ -362,7 +362,7 @@ double** InsertionSort_MatrixExport(double** tempMatrix, int m, int n) {
 	return tempMatrix;
 }
 
-// Сортировка Шелла для тестирования
+// РЎРѕСЂС‚РёСЂРѕРІРєР° РЁРµР»Р»Р° РґР»СЏ С‚РµСЃС‚РёСЂРѕРІР°РЅРёСЏ
 double** ShellSort_MatrixExport(double** tempMatrix, int m, int n) {
 	int i, j, k, l;
 	double temp = 0;
@@ -380,7 +380,7 @@ double** ShellSort_MatrixExport(double** tempMatrix, int m, int n) {
 	return tempMatrix;
 }
 
-// Быстрая сортировка для тестирования
+// Р‘С‹СЃС‚СЂР°СЏ СЃРѕСЂС‚РёСЂРѕРІРєР° РґР»СЏ С‚РµСЃС‚РёСЂРѕРІР°РЅРёСЏ
 double** QuickSort_MatrixExport(double** tempMatrix, int n, int left, int right) {
 	ResultCount quickCount;
 	quickCount.comparison = 0;

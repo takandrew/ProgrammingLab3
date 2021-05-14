@@ -5,7 +5,7 @@
 #include <experimental/filesystem>
 using namespace std::experimental::filesystem;
 
-// Проверка существования файла
+// РџСЂРѕРІРµСЂРєР° СЃСѓС‰РµСЃС‚РІРѕРІР°РЅРёСЏ С„Р°Р№Р»Р°
 bool FileExist(string path) {
 	WIN32_FIND_DATA wfd;
 	LPCSTR pathLPC = path.c_str();
@@ -17,13 +17,13 @@ bool FileExist(string path) {
 	return false;
 }
 
-//Функция, проверяющая, является ли файл доступным только для чтения. Принимает путь к файлу.
+//Р¤СѓРЅРєС†РёСЏ, РїСЂРѕРІРµСЂСЏСЋС‰Р°СЏ, СЏРІР»СЏРµС‚СЃСЏ Р»Рё С„Р°Р№Р» РґРѕСЃС‚СѓРїРЅС‹Рј С‚РѕР»СЊРєРѕ РґР»СЏ С‡С‚РµРЅРёСЏ. РџСЂРёРЅРёРјР°РµС‚ РїСѓС‚СЊ Рє С„Р°Р№Р»Сѓ.
 bool ReadOnlyChecking(string path) {
 	LPCSTR name = path.c_str();
 	WIN32_FIND_DATAA findData;
 	FindFirstFileA(name, &findData);
 	if (findData.dwFileAttributes & FILE_ATTRIBUTE_READONLY) {
-		cout << endl << "В данный файл невозможно записать данные. Доступен только для чтения." << endl;
+		cout << endl << "Р’ РґР°РЅРЅС‹Р№ С„Р°Р№Р» РЅРµРІРѕР·РјРѕР¶РЅРѕ Р·Р°РїРёСЃР°С‚СЊ РґР°РЅРЅС‹Рµ. Р”РѕСЃС‚СѓРїРµРЅ С‚РѕР»СЊРєРѕ РґР»СЏ С‡С‚РµРЅРёСЏ." << endl;
 		return false;
 	}
 	else {
@@ -31,7 +31,7 @@ bool ReadOnlyChecking(string path) {
 	}
 }
 
-//Функция, проверяющая корректность файла
+//Р¤СѓРЅРєС†РёСЏ, РїСЂРѕРІРµСЂСЏСЋС‰Р°СЏ РєРѕСЂСЂРµРєС‚РЅРѕСЃС‚СЊ С„Р°Р№Р»Р°
 bool FileCorrectChecking(string path) {
 	int one = 1, four = 4;
 	size_t five = 5;
@@ -41,28 +41,28 @@ bool FileCorrectChecking(string path) {
 	string basefilenameStr = path.substr(found + one, base);
 	const char* basefilenameChar = basefilenameStr.c_str();
 	if (!_strcmpi(basefilenameChar, "con")) {
-		cout << endl << "Некорректное имя файла." << endl;
+		cout << endl << "РќРµРєРѕСЂСЂРµРєС‚РЅРѕРµ РёРјСЏ С„Р°Р№Р»Р°." << endl;
 		return false;
 	}
 	if (path.size() < five) {
-		cout << endl << "Некорректное имя файла. Требуется ввести расширение файла после названия" << endl;
+		cout << endl << "РќРµРєРѕСЂСЂРµРєС‚РЅРѕРµ РёРјСЏ С„Р°Р№Р»Р°. РўСЂРµР±СѓРµС‚СЃСЏ РІРІРµСЃС‚Рё СЂР°СЃС€РёСЂРµРЅРёРµ С„Р°Р№Р»Р° РїРѕСЃР»Рµ РЅР°Р·РІР°РЅРёСЏ" << endl;
 		return false;
 	}
 	if (path.substr(path.size() - four) != ".txt") {
-		cout << endl << "Некорректный формат файла. Необходим файл формата .txt" << endl;
+		cout << endl << "РќРµРєРѕСЂСЂРµРєС‚РЅС‹Р№ С„РѕСЂРјР°С‚ С„Р°Р№Р»Р°. РќРµРѕР±С…РѕРґРёРј С„Р°Р№Р» С„РѕСЂРјР°С‚Р° .txt" << endl;
 		return false;
 	}
 	if (!FileExist(path)) {
 		return true;
 	}
 	if (!is_regular_file(path)) {
-		cout << endl << "Файл не является обычным." << endl;
+		cout << endl << "Р¤Р°Р№Р» РЅРµ СЏРІР»СЏРµС‚СЃСЏ РѕР±С‹С‡РЅС‹Рј." << endl;
 		return false;
 	}
 	return true;
 }
 
-//Функция, проверяющая корректность файла, из которого считывают данные
+//Р¤СѓРЅРєС†РёСЏ, РїСЂРѕРІРµСЂСЏСЋС‰Р°СЏ РєРѕСЂСЂРµРєС‚РЅРѕСЃС‚СЊ С„Р°Р№Р»Р°, РёР· РєРѕС‚РѕСЂРѕРіРѕ СЃС‡РёС‚С‹РІР°СЋС‚ РґР°РЅРЅС‹Рµ
 bool FileReadCorrectChecking(string path) {
 	int one = 1, four = 4;
 	size_t five = 5;
@@ -72,29 +72,29 @@ bool FileReadCorrectChecking(string path) {
 	string basefilenameStr = path.substr(found + one, base);
 	const char* basefilenameChar = basefilenameStr.c_str();
 	if (!_strcmpi(basefilenameChar, "con")) {
-		cout << endl << "Некорректное имя файла." << endl;
+		cout << endl << "РќРµРєРѕСЂСЂРµРєС‚РЅРѕРµ РёРјСЏ С„Р°Р№Р»Р°." << endl;
 		return false;
 	}
 	if (path.size() < five) {
-		cout << endl << "Некорректное имя файла. Требуется ввести расширение файла после названия" << endl;
+		cout << endl << "РќРµРєРѕСЂСЂРµРєС‚РЅРѕРµ РёРјСЏ С„Р°Р№Р»Р°. РўСЂРµР±СѓРµС‚СЃСЏ РІРІРµСЃС‚Рё СЂР°СЃС€РёСЂРµРЅРёРµ С„Р°Р№Р»Р° РїРѕСЃР»Рµ РЅР°Р·РІР°РЅРёСЏ" << endl;
 		return false;
 	}
 	if (!FileExist(path)) {
-		cout << endl << "Файла по указанному пути не существует" << endl;
+		cout << endl << "Р¤Р°Р№Р»Р° РїРѕ СѓРєР°Р·Р°РЅРЅРѕРјСѓ РїСѓС‚Рё РЅРµ СЃСѓС‰РµСЃС‚РІСѓРµС‚" << endl;
 		return false;
 	}
 	if (path.substr(path.size() - four) != ".txt") {
-		cout << endl << "Некорректный формат файла. Необходим файл формата .txt" << endl;
+		cout << endl << "РќРµРєРѕСЂСЂРµРєС‚РЅС‹Р№ С„РѕСЂРјР°С‚ С„Р°Р№Р»Р°. РќРµРѕР±С…РѕРґРёРј С„Р°Р№Р» С„РѕСЂРјР°С‚Р° .txt" << endl;
 		return false;
 	}
 	if (!is_regular_file(path)) {
-		cout << endl << "Файл не является обычным." << endl;
+		cout << endl << "Р¤Р°Р№Р» РЅРµ СЏРІР»СЏРµС‚СЃСЏ РѕР±С‹С‡РЅС‹Рј." << endl;
 		return false;
 	}
 	return true;
 }
 
-// Функция, проверяющая открытие файла
+// Р¤СѓРЅРєС†РёСЏ, РїСЂРѕРІРµСЂСЏСЋС‰Р°СЏ РѕС‚РєСЂС‹С‚РёРµ С„Р°Р№Р»Р°
 bool FileOpenChecking(string path) {
 	if (!FileExist(path)) {
 		ofstream fout;
@@ -116,7 +116,7 @@ bool FileOpenChecking(string path) {
 		return true;
 }
 
-// Чтение длины строки матрицы из файла
+// Р§С‚РµРЅРёРµ РґР»РёРЅС‹ СЃС‚СЂРѕРєРё РјР°С‚СЂРёС†С‹ РёР· С„Р°Р№Р»Р°
 int FileReadLineSize(string path) {
 	int n;
 	ifstream fin;
@@ -129,7 +129,7 @@ int FileReadLineSize(string path) {
 }
 
 
-// Чтение длины столбца матрицы из файла
+// Р§С‚РµРЅРёРµ РґР»РёРЅС‹ СЃС‚РѕР»Р±С†Р° РјР°С‚СЂРёС†С‹ РёР· С„Р°Р№Р»Р°
 int FileReadColumnSize(string path) {
 	int n, m;
 	ifstream fin;
@@ -144,7 +144,7 @@ int FileReadColumnSize(string path) {
 	return m;
 }
 
-// Чтение значений элементов матрицы из файла
+// Р§С‚РµРЅРёРµ Р·РЅР°С‡РµРЅРёР№ СЌР»РµРјРµРЅС‚РѕРІ РјР°С‚СЂРёС†С‹ РёР· С„Р°Р№Р»Р°
 double** FileReadMatrix(int n, int m, double **matrix, string path) {
 	int i, j;
 	ifstream fin;
@@ -162,7 +162,7 @@ double** FileReadMatrix(int n, int m, double **matrix, string path) {
 	return matrix;
 }
 
-// Запись исходных данных в файл
+// Р—Р°РїРёСЃСЊ РёСЃС…РѕРґРЅС‹С… РґР°РЅРЅС‹С… РІ С„Р°Р№Р»
 void FileWriteData(int n, int m, double **matrix) {
 	int i, j;
 	ofstream fout;
@@ -170,16 +170,16 @@ void FileWriteData(int n, int m, double **matrix) {
 	bool readOnlyCheck = 0;
 	bool fileCorrectCheck = 0;
 	bool fileOpenCheck = 0;
-	cout << endl << "Введите путь к файлу:" << endl;
+	cout << endl << "Р’РІРµРґРёС‚Рµ РїСѓС‚СЊ Рє С„Р°Р№Р»Сѓ:" << endl;
 	SetConsoleCP(1251);
 	cin >> path;
 	SetConsoleCP(866);
 	readOnlyCheck = ReadOnlyChecking(path);
 	fileCorrectCheck = FileCorrectChecking(path);
 	fileOpenCheck = FileOpenChecking(path);
-	while ((readOnlyCheck == false) || (fileCorrectCheck == false) || (fileOpenCheck == false)) { // Проверка корректности файла
-		cout << "Ошибка открытия файла. Пожалуйста попробуйте еще раз." << endl;
-		cout << "Введите путь к файлу:" << endl;
+	while ((readOnlyCheck == false) || (fileCorrectCheck == false) || (fileOpenCheck == false)) { // РџСЂРѕРІРµСЂРєР° РєРѕСЂСЂРµРєС‚РЅРѕСЃС‚Рё С„Р°Р№Р»Р°
+		cout << "РћС€РёР±РєР° РѕС‚РєСЂС‹С‚РёСЏ С„Р°Р№Р»Р°. РџРѕР¶Р°Р»СѓР№СЃС‚Р° РїРѕРїСЂРѕР±СѓР№С‚Рµ РµС‰Рµ СЂР°Р·." << endl;
+		cout << "Р’РІРµРґРёС‚Рµ РїСѓС‚СЊ Рє С„Р°Р№Р»Сѓ:" << endl;
 		SetConsoleCP(1251);
 		cin >> path;
 		SetConsoleCP(866);
@@ -187,10 +187,10 @@ void FileWriteData(int n, int m, double **matrix) {
 		fileCorrectCheck = FileCorrectChecking(path);
 		fileOpenCheck = FileOpenChecking(path);
 	}
-	if (FileExist(path) == true) { // Проверка существования файла
-		if (MenuReWrite() == true) { // Возможность выбора перезаписи в файл
+	if (FileExist(path) == true) { // РџСЂРѕРІРµСЂРєР° СЃСѓС‰РµСЃС‚РІРѕРІР°РЅРёСЏ С„Р°Р№Р»Р°
+		if (MenuReWrite() == true) { // Р’РѕР·РјРѕР¶РЅРѕСЃС‚СЊ РІС‹Р±РѕСЂР° РїРµСЂРµР·Р°РїРёСЃРё РІ С„Р°Р№Р»
 			fout.open(path);
-			// Вывод исходных данных в файл
+			// Р’С‹РІРѕРґ РёСЃС…РѕРґРЅС‹С… РґР°РЅРЅС‹С… РІ С„Р°Р№Р»
 			fout << n << endl;
 			fout << m << endl;
 			for (i = 0; i < m; i++) {
@@ -199,17 +199,17 @@ void FileWriteData(int n, int m, double **matrix) {
 				}
 			}
 		}
-		else { // Отказ от перезаписи и выбор другого пути к файлу
-			cout << "Введите путь к файлу:" << endl;
+		else { // РћС‚РєР°Р· РѕС‚ РїРµСЂРµР·Р°РїРёСЃРё Рё РІС‹Р±РѕСЂ РґСЂСѓРіРѕРіРѕ РїСѓС‚Рё Рє С„Р°Р№Р»Сѓ
+			cout << "Р’РІРµРґРёС‚Рµ РїСѓС‚СЊ Рє С„Р°Р№Р»Сѓ:" << endl;
 			SetConsoleCP(1251);
 			cin >> path;
 			SetConsoleCP(866);
 			readOnlyCheck = ReadOnlyChecking(path);
 			fileCorrectCheck = FileCorrectChecking(path);
 			fileOpenCheck = FileOpenChecking(path);
-			while ((readOnlyCheck == false) || (fileCorrectCheck == false) || (fileOpenCheck == false)) { // Проверка корректности файла
-				cout << "Ошибка открытия файла. Пожалуйста попробуйте еще раз." << endl;
-				cout << "Введите путь к файлу:" << endl;
+			while ((readOnlyCheck == false) || (fileCorrectCheck == false) || (fileOpenCheck == false)) { // РџСЂРѕРІРµСЂРєР° РєРѕСЂСЂРµРєС‚РЅРѕСЃС‚Рё С„Р°Р№Р»Р°
+				cout << "РћС€РёР±РєР° РѕС‚РєСЂС‹С‚РёСЏ С„Р°Р№Р»Р°. РџРѕР¶Р°Р»СѓР№СЃС‚Р° РїРѕРїСЂРѕР±СѓР№С‚Рµ РµС‰Рµ СЂР°Р·." << endl;
+				cout << "Р’РІРµРґРёС‚Рµ РїСѓС‚СЊ Рє С„Р°Р№Р»Сѓ:" << endl;
 				SetConsoleCP(1251);
 				cin >> path;
 				SetConsoleCP(866);
@@ -217,21 +217,21 @@ void FileWriteData(int n, int m, double **matrix) {
 				fileCorrectCheck = FileCorrectChecking(path);
 				fileOpenCheck = FileOpenChecking(path);
 			}
-			while (FileExist(path) == true) { // Цикл проверки существования, перезаписи или выбора другого пути к файлу
+			while (FileExist(path) == true) { // Р¦РёРєР» РїСЂРѕРІРµСЂРєРё СЃСѓС‰РµСЃС‚РІРѕРІР°РЅРёСЏ, РїРµСЂРµР·Р°РїРёСЃРё РёР»Рё РІС‹Р±РѕСЂР° РґСЂСѓРіРѕРіРѕ РїСѓС‚Рё Рє С„Р°Р№Р»Сѓ
 				if (MenuReWrite() == true) {
 					break;
 				}
 				else {
-					cout << "Введите путь к файлу:" << endl;
+					cout << "Р’РІРµРґРёС‚Рµ РїСѓС‚СЊ Рє С„Р°Р№Р»Сѓ:" << endl;
 					SetConsoleCP(1251);
 					cin >> path;
 					SetConsoleCP(866);
 					readOnlyCheck = ReadOnlyChecking(path);
 					fileCorrectCheck = FileCorrectChecking(path);
 					fileOpenCheck = FileOpenChecking(path);
-					while ((readOnlyCheck == false) || (fileCorrectCheck == false) || (fileOpenCheck == false)) { // Проверка корректности файла
-						cout << "Ошибка открытия файла. Пожалуйста попробуйте еще раз." << endl;
-						cout << "Введите путь к файлу:" << endl;
+					while ((readOnlyCheck == false) || (fileCorrectCheck == false) || (fileOpenCheck == false)) { // РџСЂРѕРІРµСЂРєР° РєРѕСЂСЂРµРєС‚РЅРѕСЃС‚Рё С„Р°Р№Р»Р°
+						cout << "РћС€РёР±РєР° РѕС‚РєСЂС‹С‚РёСЏ С„Р°Р№Р»Р°. РџРѕР¶Р°Р»СѓР№СЃС‚Р° РїРѕРїСЂРѕР±СѓР№С‚Рµ РµС‰Рµ СЂР°Р·." << endl;
+						cout << "Р’РІРµРґРёС‚Рµ РїСѓС‚СЊ Рє С„Р°Р№Р»Сѓ:" << endl;
 						SetConsoleCP(1251);
 						cin >> path;
 						SetConsoleCP(866);
@@ -243,7 +243,7 @@ void FileWriteData(int n, int m, double **matrix) {
 			}
 			SetConsoleCP(866);
 			fout.open(path);
-			// Вывод исходных данных в файл
+			// Р’С‹РІРѕРґ РёСЃС…РѕРґРЅС‹С… РґР°РЅРЅС‹С… РІ С„Р°Р№Р»
 			fout << n << endl;
 			fout << m << endl;
 			for (i = 0; i < m; i++) {
@@ -253,9 +253,9 @@ void FileWriteData(int n, int m, double **matrix) {
 			}
 		}
 	}
-	else { // Если файла не существует 
+	else { // Р•СЃР»Рё С„Р°Р№Р»Р° РЅРµ СЃСѓС‰РµСЃС‚РІСѓРµС‚ 
 		fout.open(path);
-		// Вывод исходных данных в файл
+		// Р’С‹РІРѕРґ РёСЃС…РѕРґРЅС‹С… РґР°РЅРЅС‹С… РІ С„Р°Р№Р»
 		fout << n << endl;
 		fout << m << endl;
 		for (i = 0; i < m; i++) {
@@ -264,15 +264,15 @@ void FileWriteData(int n, int m, double **matrix) {
 			}
 		}
 	}
-	cout << endl << "Файл успешно сохранён." << endl;
+	cout << endl << "Р¤Р°Р№Р» СѓСЃРїРµС€РЅРѕ СЃРѕС…СЂР°РЅС‘РЅ." << endl;
 	fout.close();
 }
 
-// Запись результата программы в файл
+// Р—Р°РїРёСЃСЊ СЂРµР·СѓР»СЊС‚Р°С‚Р° РїСЂРѕРіСЂР°РјРјС‹ РІ С„Р°Р№Р»
 void FileWriteResult(int m, int n, double** matrix, ResultCount bubleCount, ResultCount selectionCount,
 	ResultCount insertionCount, ResultCount shellCount, ResultCount quickCount) {
 	int i, j;
-	// Создание и заполнение временной матрицы для пузырьковой сортировки
+	// РЎРѕР·РґР°РЅРёРµ Рё Р·Р°РїРѕР»РЅРµРЅРёРµ РІСЂРµРјРµРЅРЅРѕР№ РјР°С‚СЂРёС†С‹ РґР»СЏ РїСѓР·С‹СЂСЊРєРѕРІРѕР№ СЃРѕСЂС‚РёСЂРѕРІРєРё
 	double **bubbleMatrix = new double*[m];
 	for (i = 0; i < m; i++)
 		bubbleMatrix[i] = new double[n];
@@ -281,8 +281,8 @@ void FileWriteResult(int m, int n, double** matrix, ResultCount bubleCount, Resu
 			bubbleMatrix[i][j] = matrix[i][j];
 		}
 	}
-	bubbleMatrix = BubbleSort_MatrixExport(bubbleMatrix, m, n); // Пузырьковая сортировка
-	// // Создание и заполнение временной матрицы для сортировки отбором
+	bubbleMatrix = BubbleSort_MatrixExport(bubbleMatrix, m, n); // РџСѓР·С‹СЂСЊРєРѕРІР°СЏ СЃРѕСЂС‚РёСЂРѕРІРєР°
+	// // РЎРѕР·РґР°РЅРёРµ Рё Р·Р°РїРѕР»РЅРµРЅРёРµ РІСЂРµРјРµРЅРЅРѕР№ РјР°С‚СЂРёС†С‹ РґР»СЏ СЃРѕСЂС‚РёСЂРѕРІРєРё РѕС‚Р±РѕСЂРѕРј
 	double **selectionMatrix = new double*[m];
 	for (i = 0; i < m; i++)
 		selectionMatrix[i] = new double[n];
@@ -291,8 +291,8 @@ void FileWriteResult(int m, int n, double** matrix, ResultCount bubleCount, Resu
 			selectionMatrix[i][j] = matrix[i][j];
 		}
 	}
-	selectionMatrix = SelectionSort_MatrixExport(selectionMatrix, m, n); // Сортировка отбором
-	// Создание и заполнение временной матрицы для сортировки вставкой
+	selectionMatrix = SelectionSort_MatrixExport(selectionMatrix, m, n); // РЎРѕСЂС‚РёСЂРѕРІРєР° РѕС‚Р±РѕСЂРѕРј
+	// РЎРѕР·РґР°РЅРёРµ Рё Р·Р°РїРѕР»РЅРµРЅРёРµ РІСЂРµРјРµРЅРЅРѕР№ РјР°С‚СЂРёС†С‹ РґР»СЏ СЃРѕСЂС‚РёСЂРѕРІРєРё РІСЃС‚Р°РІРєРѕР№
 	double **insertionMatrix = new double*[m];
 	for (i = 0; i < m; i++)
 		insertionMatrix[i] = new double[n];
@@ -301,8 +301,8 @@ void FileWriteResult(int m, int n, double** matrix, ResultCount bubleCount, Resu
 			insertionMatrix[i][j] = matrix[i][j];
 		}
 	}
-	insertionMatrix = InsertionSort_MatrixExport(insertionMatrix, m, n); // Сортировка вставкой
-	// Создание и заполнение временной матрицы для сортировки Шелла
+	insertionMatrix = InsertionSort_MatrixExport(insertionMatrix, m, n); // РЎРѕСЂС‚РёСЂРѕРІРєР° РІСЃС‚Р°РІРєРѕР№
+	// РЎРѕР·РґР°РЅРёРµ Рё Р·Р°РїРѕР»РЅРµРЅРёРµ РІСЂРµРјРµРЅРЅРѕР№ РјР°С‚СЂРёС†С‹ РґР»СЏ СЃРѕСЂС‚РёСЂРѕРІРєРё РЁРµР»Р»Р°
 	double **shellMatrix = new double*[m];
 	for (i = 0; i < m; i++)
 		shellMatrix[i] = new double[n];
@@ -311,8 +311,8 @@ void FileWriteResult(int m, int n, double** matrix, ResultCount bubleCount, Resu
 			shellMatrix[i][j] = matrix[i][j];
 		}
 	}
-	shellMatrix = ShellSort_MatrixExport(shellMatrix, m, n); // Сортировка Шелла
-	// Создание и заполнение временной матрицы для быстрой сортировки
+	shellMatrix = ShellSort_MatrixExport(shellMatrix, m, n); // РЎРѕСЂС‚РёСЂРѕРІРєР° РЁРµР»Р»Р°
+	// РЎРѕР·РґР°РЅРёРµ Рё Р·Р°РїРѕР»РЅРµРЅРёРµ РІСЂРµРјРµРЅРЅРѕР№ РјР°С‚СЂРёС†С‹ РґР»СЏ Р±С‹СЃС‚СЂРѕР№ СЃРѕСЂС‚РёСЂРѕРІРєРё
 	double **quickMatrix = new double*[m];
 	for (i = 0; i < m; i++)
 		quickMatrix[i] = new double[n];
@@ -321,22 +321,22 @@ void FileWriteResult(int m, int n, double** matrix, ResultCount bubleCount, Resu
 			quickMatrix[i][j] = matrix[i][j];
 		}
 	}
-	quickMatrix = QuickSort_MatrixExport(quickMatrix, n, 0, (m - 1)); // Быстрая сортировка
+	quickMatrix = QuickSort_MatrixExport(quickMatrix, n, 0, (m - 1)); // Р‘С‹СЃС‚СЂР°СЏ СЃРѕСЂС‚РёСЂРѕРІРєР°
 	ofstream fout;
 	string path;
 	bool readOnlyCheck = 0;
 	bool fileCorrectCheck = 0;
 	bool fileOpenCheck = 0;
-	cout << endl << "Введите путь к файлу:" << endl;
+	cout << endl << "Р’РІРµРґРёС‚Рµ РїСѓС‚СЊ Рє С„Р°Р№Р»Сѓ:" << endl;
 	SetConsoleCP(1251);
 	cin >> path;
 	SetConsoleCP(866);
 	readOnlyCheck = ReadOnlyChecking(path);
 	fileCorrectCheck = FileCorrectChecking(path);
 	fileOpenCheck = FileOpenChecking(path);
-	while ((readOnlyCheck == false) || (fileCorrectCheck == false) || (fileOpenCheck == false)) { // Проверка корректности файла
-		cout << "Ошибка открытия файла. Пожалуйста попробуйте еще раз." << endl;
-		cout << "Введите путь к файлу:" << endl;
+	while ((readOnlyCheck == false) || (fileCorrectCheck == false) || (fileOpenCheck == false)) { // РџСЂРѕРІРµСЂРєР° РєРѕСЂСЂРµРєС‚РЅРѕСЃС‚Рё С„Р°Р№Р»Р°
+		cout << "РћС€РёР±РєР° РѕС‚РєСЂС‹С‚РёСЏ С„Р°Р№Р»Р°. РџРѕР¶Р°Р»СѓР№СЃС‚Р° РїРѕРїСЂРѕР±СѓР№С‚Рµ РµС‰Рµ СЂР°Р·." << endl;
+		cout << "Р’РІРµРґРёС‚Рµ РїСѓС‚СЊ Рє С„Р°Р№Р»Сѓ:" << endl;
 		SetConsoleCP(1251);
 		cin >> path;
 		SetConsoleCP(866);
@@ -344,71 +344,71 @@ void FileWriteResult(int m, int n, double** matrix, ResultCount bubleCount, Resu
 		fileCorrectCheck = FileCorrectChecking(path);
 		fileOpenCheck = FileOpenChecking(path);
 	}
-	if (FileExist(path) == true) { // Проверка существования файла
-		if (MenuReWrite() == true) { // Возможность выбора перезаписи в файл
+	if (FileExist(path) == true) { // РџСЂРѕРІРµСЂРєР° СЃСѓС‰РµСЃС‚РІРѕРІР°РЅРёСЏ С„Р°Р№Р»Р°
+		if (MenuReWrite() == true) { // Р’РѕР·РјРѕР¶РЅРѕСЃС‚СЊ РІС‹Р±РѕСЂР° РїРµСЂРµР·Р°РїРёСЃРё РІ С„Р°Р№Р»
 			fout.open(path);
-			// Вывод исходных данных в файл
-			fout << "Исходная матрица:" << endl;
+			// Р’С‹РІРѕРґ РёСЃС…РѕРґРЅС‹С… РґР°РЅРЅС‹С… РІ С„Р°Р№Р»
+			fout << "РСЃС…РѕРґРЅР°СЏ РјР°С‚СЂРёС†Р°:" << endl;
 			for (i = 0; i < m; i++) {
 				for (j = 0; j < n; j++) {
 					fout << setw(6) << matrix[i][j];
 				}
 				fout << endl;
 			}
-			fout << endl << "Пузырьковая сортировка:" << endl;
+			fout << endl << "РџСѓР·С‹СЂСЊРєРѕРІР°СЏ СЃРѕСЂС‚РёСЂРѕРІРєР°:" << endl;
 			for (i = 0; i < m; i++) {
 				for (j = 0; j < n; j++) {
 					fout << setw(6) << bubbleMatrix[i][j];
 				}
 				fout << endl;
 			}
-			fout << endl << "Сортировка отбором:" << endl;
+			fout << endl << "РЎРѕСЂС‚РёСЂРѕРІРєР° РѕС‚Р±РѕСЂРѕРј:" << endl;
 			for (i = 0; i < m; i++) {
 				for (j = 0; j < n; j++) {
 					fout << setw(6) << selectionMatrix[i][j];
 				}
 				fout << endl;
 			}
-			fout << endl << "Сортировка вставкой:" << endl;
+			fout << endl << "РЎРѕСЂС‚РёСЂРѕРІРєР° РІСЃС‚Р°РІРєРѕР№:" << endl;
 			for (i = 0; i < m; i++) {
 				for (j = 0; j < n; j++) {
 					fout << setw(6) << insertionMatrix[i][j];
 				}
 				fout << endl;
 			}
-			fout << endl << "Сортировка Шелла:" << endl;
+			fout << endl << "РЎРѕСЂС‚РёСЂРѕРІРєР° РЁРµР»Р»Р°:" << endl;
 			for (i = 0; i < m; i++) {
 				for (j = 0; j < n; j++) {
 					fout << setw(6) << shellMatrix[i][j];
 				}
 				fout << endl;
 			}
-			fout << endl << "Быстрая сортировка:" << endl;
+			fout << endl << "Р‘С‹СЃС‚СЂР°СЏ СЃРѕСЂС‚РёСЂРѕРІРєР°:" << endl;
 			for (i = 0; i < m; i++) {
 				for (j = 0; j < n; j++) {
 					fout << setw(6) << quickMatrix[i][j];
 				}
 				fout << endl;
 			}
-			fout << "Результат сортировки разными методами:" << endl;
-			fout << "Метод сортировки" << setw(30) << "Число сравнений" << setw(30) << "Число перестановок" << endl;
-			fout << "Пузырьковая сортировка" << setw(16) << bubleCount.comparison << setw(30) << bubleCount.permutation << endl;
-			fout << "Сортировка отбором" << setw(20) << selectionCount.comparison << setw(30) << selectionCount.permutation << endl;
-			fout << "Сортировка вставкой" << setw(19) << insertionCount.comparison << setw(30) << insertionCount.permutation << endl;
-			fout << "Сортировка Шелла" << setw(22) << shellCount.comparison << setw(30) << shellCount.permutation << endl;
-			fout << "Быстрая сортировка" << setw(20) << quickCount.comparison << setw(30) << quickCount.permutation << endl;
+			fout << "Р РµР·СѓР»СЊС‚Р°С‚ СЃРѕСЂС‚РёСЂРѕРІРєРё СЂР°Р·РЅС‹РјРё РјРµС‚РѕРґР°РјРё:" << endl;
+			fout << "РњРµС‚РѕРґ СЃРѕСЂС‚РёСЂРѕРІРєРё" << setw(30) << "Р§РёСЃР»Рѕ СЃСЂР°РІРЅРµРЅРёР№" << setw(30) << "Р§РёСЃР»Рѕ РїРµСЂРµСЃС‚Р°РЅРѕРІРѕРє" << endl;
+			fout << "РџСѓР·С‹СЂСЊРєРѕРІР°СЏ СЃРѕСЂС‚РёСЂРѕРІРєР°" << setw(16) << bubleCount.comparison << setw(30) << bubleCount.permutation << endl;
+			fout << "РЎРѕСЂС‚РёСЂРѕРІРєР° РѕС‚Р±РѕСЂРѕРј" << setw(20) << selectionCount.comparison << setw(30) << selectionCount.permutation << endl;
+			fout << "РЎРѕСЂС‚РёСЂРѕРІРєР° РІСЃС‚Р°РІРєРѕР№" << setw(19) << insertionCount.comparison << setw(30) << insertionCount.permutation << endl;
+			fout << "РЎРѕСЂС‚РёСЂРѕРІРєР° РЁРµР»Р»Р°" << setw(22) << shellCount.comparison << setw(30) << shellCount.permutation << endl;
+			fout << "Р‘С‹СЃС‚СЂР°СЏ СЃРѕСЂС‚РёСЂРѕРІРєР°" << setw(20) << quickCount.comparison << setw(30) << quickCount.permutation << endl;
 		}
-		else { // Отказ от перезаписи и выбор другого пути к файлу
-			cout << "Введите путь к файлу:" << endl;
+		else { // РћС‚РєР°Р· РѕС‚ РїРµСЂРµР·Р°РїРёСЃРё Рё РІС‹Р±РѕСЂ РґСЂСѓРіРѕРіРѕ РїСѓС‚Рё Рє С„Р°Р№Р»Сѓ
+			cout << "Р’РІРµРґРёС‚Рµ РїСѓС‚СЊ Рє С„Р°Р№Р»Сѓ:" << endl;
 			SetConsoleCP(1251);
 			cin >> path;
 			SetConsoleCP(866);
 			readOnlyCheck = ReadOnlyChecking(path);
 			fileCorrectCheck = FileCorrectChecking(path);
 			fileOpenCheck = FileOpenChecking(path);
-			while ((readOnlyCheck == false) || (fileCorrectCheck == false) || (fileOpenCheck == false)) { // Проверка корректности файла
-				cout << "Ошибка открытия файла. Пожалуйста попробуйте еще раз." << endl;
-				cout << "Введите путь к файлу:" << endl;
+			while ((readOnlyCheck == false) || (fileCorrectCheck == false) || (fileOpenCheck == false)) { // РџСЂРѕРІРµСЂРєР° РєРѕСЂСЂРµРєС‚РЅРѕСЃС‚Рё С„Р°Р№Р»Р°
+				cout << "РћС€РёР±РєР° РѕС‚РєСЂС‹С‚РёСЏ С„Р°Р№Р»Р°. РџРѕР¶Р°Р»СѓР№СЃС‚Р° РїРѕРїСЂРѕР±СѓР№С‚Рµ РµС‰Рµ СЂР°Р·." << endl;
+				cout << "Р’РІРµРґРёС‚Рµ РїСѓС‚СЊ Рє С„Р°Р№Р»Сѓ:" << endl;
 				SetConsoleCP(1251);
 				cin >> path;
 				SetConsoleCP(866);
@@ -416,21 +416,21 @@ void FileWriteResult(int m, int n, double** matrix, ResultCount bubleCount, Resu
 				fileCorrectCheck = FileCorrectChecking(path);
 				fileOpenCheck = FileOpenChecking(path);
 			}
-			while (FileExist(path) == true) { // Цикл проверки существования, перезаписи или выбора другого пути к файлу
+			while (FileExist(path) == true) { // Р¦РёРєР» РїСЂРѕРІРµСЂРєРё СЃСѓС‰РµСЃС‚РІРѕРІР°РЅРёСЏ, РїРµСЂРµР·Р°РїРёСЃРё РёР»Рё РІС‹Р±РѕСЂР° РґСЂСѓРіРѕРіРѕ РїСѓС‚Рё Рє С„Р°Р№Р»Сѓ
 				if (MenuReWrite() == true) {
 					break;
 				}
 				else {
-					cout << "Введите путь к файлу:" << endl;
+					cout << "Р’РІРµРґРёС‚Рµ РїСѓС‚СЊ Рє С„Р°Р№Р»Сѓ:" << endl;
 					SetConsoleCP(1251);
 					cin >> path;
 					SetConsoleCP(866);
 					readOnlyCheck = ReadOnlyChecking(path);
 					fileCorrectCheck = FileCorrectChecking(path);
 					fileOpenCheck = FileOpenChecking(path);
-					while ((readOnlyCheck == false) || (fileCorrectCheck == false) || (fileOpenCheck == false)) { // Проверка корректности файла
-						cout << "Ошибка открытия файла. Пожалуйста попробуйте еще раз." << endl;
-						cout << "Введите путь к файлу:" << endl;
+					while ((readOnlyCheck == false) || (fileCorrectCheck == false) || (fileOpenCheck == false)) { // РџСЂРѕРІРµСЂРєР° РєРѕСЂСЂРµРєС‚РЅРѕСЃС‚Рё С„Р°Р№Р»Р°
+						cout << "РћС€РёР±РєР° РѕС‚РєСЂС‹С‚РёСЏ С„Р°Р№Р»Р°. РџРѕР¶Р°Р»СѓР№СЃС‚Р° РїРѕРїСЂРѕР±СѓР№С‚Рµ РµС‰Рµ СЂР°Р·." << endl;
+						cout << "Р’РІРµРґРёС‚Рµ РїСѓС‚СЊ Рє С„Р°Р№Р»Сѓ:" << endl;
 						SetConsoleCP(1251);
 						cin >> path;
 						SetConsoleCP(866);
@@ -442,114 +442,114 @@ void FileWriteResult(int m, int n, double** matrix, ResultCount bubleCount, Resu
 			}
 			SetConsoleCP(866);
 			fout.open(path);
-			// Вывод исходных данных в файл
-			fout << "Исходная матрица:" << endl;
+			// Р’С‹РІРѕРґ РёСЃС…РѕРґРЅС‹С… РґР°РЅРЅС‹С… РІ С„Р°Р№Р»
+			fout << "РСЃС…РѕРґРЅР°СЏ РјР°С‚СЂРёС†Р°:" << endl;
 			for (i = 0; i < m; i++) {
 				for (j = 0; j < n; j++) {
 					fout << setw(6) << matrix[i][j];
 				}
 				fout << endl;
 			}
-			fout << endl << "Пузырьковая сортировка:" << endl;
+			fout << endl << "РџСѓР·С‹СЂСЊРєРѕРІР°СЏ СЃРѕСЂС‚РёСЂРѕРІРєР°:" << endl;
 			for (i = 0; i < m; i++) {
 				for (j = 0; j < n; j++) {
 					fout << setw(6) << bubbleMatrix[i][j];
 				}
 				fout << endl;
 			}
-			fout << endl << "Сортировка отбором:" << endl;
+			fout << endl << "РЎРѕСЂС‚РёСЂРѕРІРєР° РѕС‚Р±РѕСЂРѕРј:" << endl;
 			for (i = 0; i < m; i++) {
 				for (j = 0; j < n; j++) {
 					fout << setw(6) << selectionMatrix[i][j];
 				}
 				fout << endl;
 			}
-			fout << endl << "Сортировка вставкой:" << endl;
+			fout << endl << "РЎРѕСЂС‚РёСЂРѕРІРєР° РІСЃС‚Р°РІРєРѕР№:" << endl;
 			for (i = 0; i < m; i++) {
 				for (j = 0; j < n; j++) {
 					fout << setw(6) << insertionMatrix[i][j];
 				}
 				fout << endl;
 			}
-			fout << endl << "Сортировка Шелла:" << endl;
+			fout << endl << "РЎРѕСЂС‚РёСЂРѕРІРєР° РЁРµР»Р»Р°:" << endl;
 			for (i = 0; i < m; i++) {
 				for (j = 0; j < n; j++) {
 					fout << setw(6) << shellMatrix[i][j];
 				}
 				fout << endl;
 			}
-			fout << endl << "Быстрая сортировка:" << endl;
+			fout << endl << "Р‘С‹СЃС‚СЂР°СЏ СЃРѕСЂС‚РёСЂРѕРІРєР°:" << endl;
 			for (i = 0; i < m; i++) {
 				for (j = 0; j < n; j++) {
 					fout << setw(6) << quickMatrix[i][j];
 				}
 				fout << endl;
 			}
-			fout << "Результат сортировки разными методами:" << endl;
-			fout << "Метод сортировки" << setw(30) << "Число сравнений" << setw(30) << "Число перестановок" << endl;
-			fout << "Пузырьковая сортировка" << setw(16) << bubleCount.comparison << setw(30) << bubleCount.permutation << endl;
-			fout << "Сортировка отбором" << setw(20) << selectionCount.comparison << setw(30) << selectionCount.permutation << endl;
-			fout << "Сортировка вставкой" << setw(19) << insertionCount.comparison << setw(30) << insertionCount.permutation << endl;
-			fout << "Сортировка Шелла" << setw(22) << shellCount.comparison << setw(30) << shellCount.permutation << endl;
-			fout << "Быстрая сортировка" << setw(20) << quickCount.comparison << setw(30) << quickCount.permutation << endl;
+			fout << "Р РµР·СѓР»СЊС‚Р°С‚ СЃРѕСЂС‚РёСЂРѕРІРєРё СЂР°Р·РЅС‹РјРё РјРµС‚РѕРґР°РјРё:" << endl;
+			fout << "РњРµС‚РѕРґ СЃРѕСЂС‚РёСЂРѕРІРєРё" << setw(30) << "Р§РёСЃР»Рѕ СЃСЂР°РІРЅРµРЅРёР№" << setw(30) << "Р§РёСЃР»Рѕ РїРµСЂРµСЃС‚Р°РЅРѕРІРѕРє" << endl;
+			fout << "РџСѓР·С‹СЂСЊРєРѕРІР°СЏ СЃРѕСЂС‚РёСЂРѕРІРєР°" << setw(16) << bubleCount.comparison << setw(30) << bubleCount.permutation << endl;
+			fout << "РЎРѕСЂС‚РёСЂРѕРІРєР° РѕС‚Р±РѕСЂРѕРј" << setw(20) << selectionCount.comparison << setw(30) << selectionCount.permutation << endl;
+			fout << "РЎРѕСЂС‚РёСЂРѕРІРєР° РІСЃС‚Р°РІРєРѕР№" << setw(19) << insertionCount.comparison << setw(30) << insertionCount.permutation << endl;
+			fout << "РЎРѕСЂС‚РёСЂРѕРІРєР° РЁРµР»Р»Р°" << setw(22) << shellCount.comparison << setw(30) << shellCount.permutation << endl;
+			fout << "Р‘С‹СЃС‚СЂР°СЏ СЃРѕСЂС‚РёСЂРѕРІРєР°" << setw(20) << quickCount.comparison << setw(30) << quickCount.permutation << endl;
 		}
 	}
-	else { // Если файла не существует 
+	else { // Р•СЃР»Рё С„Р°Р№Р»Р° РЅРµ СЃСѓС‰РµСЃС‚РІСѓРµС‚ 
 		fout.open(path);
-		// Вывод исходных данных в файл
-		fout << "Исходная матрица:" << endl;
+		// Р’С‹РІРѕРґ РёСЃС…РѕРґРЅС‹С… РґР°РЅРЅС‹С… РІ С„Р°Р№Р»
+		fout << "РСЃС…РѕРґРЅР°СЏ РјР°С‚СЂРёС†Р°:" << endl;
 		for (i = 0; i < m; i++) {
 			for (j = 0; j < n; j++) {
 				fout << setw(6) << matrix[i][j];
 			}
 			fout << endl;
 		}
-		fout << endl << "Пузырьковая сортировка:" << endl;
+		fout << endl << "РџСѓР·С‹СЂСЊРєРѕРІР°СЏ СЃРѕСЂС‚РёСЂРѕРІРєР°:" << endl;
 		for (i = 0; i < m; i++) {
 			for (j = 0; j < n; j++) {
 				fout << setw(6) << bubbleMatrix[i][j];
 			}
 			fout << endl;
 		}
-		fout << endl << "Сортировка отбором:" << endl;
+		fout << endl << "РЎРѕСЂС‚РёСЂРѕРІРєР° РѕС‚Р±РѕСЂРѕРј:" << endl;
 		for (i = 0; i < m; i++) {
 			for (j = 0; j < n; j++) {
 				fout << setw(6) << selectionMatrix[i][j];
 			}
 			fout << endl;
 		}
-		fout << endl << "Сортировка вставкой:" << endl;
+		fout << endl << "РЎРѕСЂС‚РёСЂРѕРІРєР° РІСЃС‚Р°РІРєРѕР№:" << endl;
 		for (i = 0; i < m; i++) {
 			for (j = 0; j < n; j++) {
 				fout << setw(6) << insertionMatrix[i][j];
 			}
 			fout << endl;
 		}
-		fout << endl << "Сортировка Шелла:" << endl;
+		fout << endl << "РЎРѕСЂС‚РёСЂРѕРІРєР° РЁРµР»Р»Р°:" << endl;
 		for (i = 0; i < m; i++) {
 			for (j = 0; j < n; j++) {
 				fout << setw(6) << shellMatrix[i][j];
 			}
 			fout << endl;
 		}
-		fout << endl << "Быстрая сортировка:" << endl;
+		fout << endl << "Р‘С‹СЃС‚СЂР°СЏ СЃРѕСЂС‚РёСЂРѕРІРєР°:" << endl;
 		for (i = 0; i < m; i++) {
 			for (j = 0; j < n; j++) {
 				fout << setw(6) << quickMatrix[i][j];
 			}
 			fout << endl;
 		}
-		fout << "Результат сортировки разными методами:" << endl;
-		fout << "Метод сортировки" << setw(30) << "Число сравнений" << setw(30) << "Число перестановок" << endl;
-		fout << "Пузырьковая сортировка" << setw(16) << bubleCount.comparison << setw(30) << bubleCount.permutation << endl;
-		fout << "Сортировка отбором" << setw(20) << selectionCount.comparison << setw(30) << selectionCount.permutation << endl;
-		fout << "Сортировка вставкой" << setw(19) << insertionCount.comparison << setw(30) << insertionCount.permutation << endl;
-		fout << "Сортировка Шелла" << setw(22) << shellCount.comparison << setw(30) << shellCount.permutation << endl;
-		fout << "Быстрая сортировка" << setw(20) << quickCount.comparison << setw(30) << quickCount.permutation << endl;
+		fout << "Р РµР·СѓР»СЊС‚Р°С‚ СЃРѕСЂС‚РёСЂРѕРІРєРё СЂР°Р·РЅС‹РјРё РјРµС‚РѕРґР°РјРё:" << endl;
+		fout << "РњРµС‚РѕРґ СЃРѕСЂС‚РёСЂРѕРІРєРё" << setw(30) << "Р§РёСЃР»Рѕ СЃСЂР°РІРЅРµРЅРёР№" << setw(30) << "Р§РёСЃР»Рѕ РїРµСЂРµСЃС‚Р°РЅРѕРІРѕРє" << endl;
+		fout << "РџСѓР·С‹СЂСЊРєРѕРІР°СЏ СЃРѕСЂС‚РёСЂРѕРІРєР°" << setw(16) << bubleCount.comparison << setw(30) << bubleCount.permutation << endl;
+		fout << "РЎРѕСЂС‚РёСЂРѕРІРєР° РѕС‚Р±РѕСЂРѕРј" << setw(20) << selectionCount.comparison << setw(30) << selectionCount.permutation << endl;
+		fout << "РЎРѕСЂС‚РёСЂРѕРІРєР° РІСЃС‚Р°РІРєРѕР№" << setw(19) << insertionCount.comparison << setw(30) << insertionCount.permutation << endl;
+		fout << "РЎРѕСЂС‚РёСЂРѕРІРєР° РЁРµР»Р»Р°" << setw(22) << shellCount.comparison << setw(30) << shellCount.permutation << endl;
+		fout << "Р‘С‹СЃС‚СЂР°СЏ СЃРѕСЂС‚РёСЂРѕРІРєР°" << setw(20) << quickCount.comparison << setw(30) << quickCount.permutation << endl;
 	}
-	cout << endl << "Файл успешно сохранён." << endl;
+	cout << endl << "Р¤Р°Р№Р» СѓСЃРїРµС€РЅРѕ СЃРѕС…СЂР°РЅС‘РЅ." << endl;
 	fout.close();
-	// Удаление всех временных матриц
+	// РЈРґР°Р»РµРЅРёРµ РІСЃРµС… РІСЂРµРјРµРЅРЅС‹С… РјР°С‚СЂРёС†
 	for (i = 0; i < m; i++)
 		delete[] bubbleMatrix[i];
 	delete[] bubbleMatrix;

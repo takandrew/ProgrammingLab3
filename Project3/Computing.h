@@ -1,24 +1,24 @@
 #pragma once
-int NumInInt(); // Проверка корректности вводимого значения переменной типа int
-double NumInDouble(); // Проверка корректности вводимого значения переменной типа double
+int NumInInt(); // РџСЂРѕРІРµСЂРєР° РєРѕСЂСЂРµРєС‚РЅРѕСЃС‚Рё РІРІРѕРґРёРјРѕРіРѕ Р·РЅР°С‡РµРЅРёСЏ РїРµСЂРµРјРµРЅРЅРѕР№ С‚РёРїР° int
+double NumInDouble(); // РџСЂРѕРІРµСЂРєР° РєРѕСЂСЂРµРєС‚РЅРѕСЃС‚Рё РІРІРѕРґРёРјРѕРіРѕ Р·РЅР°С‡РµРЅРёСЏ РїРµСЂРµРјРµРЅРЅРѕР№ С‚РёРїР° double
 
 struct ResultCount {
-	int comparison; // Сравнения
-	int permutation; // Перестановки
+	int comparison; // РЎСЂР°РІРЅРµРЅРёСЏ
+	int permutation; // РџРµСЂРµСЃС‚Р°РЅРѕРІРєРё
 };
 
-ResultCount BubbleSort(double** matrix, int m, int n, ResultCount bubbleCount); // Пузырьковая сортировка
-ResultCount SelectionSort(double** matrix, int m, int n, ResultCount selectionCount); // Сортировка отбором
-ResultCount InsertionSort(double** matrix, int m, int n, ResultCount insertionCount); // Сортировка вставкой
-ResultCount ShellSort(double** matrix, int m, int n, ResultCount shellCount); // Сортировка Шелла
-ResultCount QuickSort(double** matrix, int m, int n, int left, int right, ResultCount quickCount); // Быстрая сортировка
-ResultCount QuickSort_working(double** tempMatrix, int j, int n, int left, int right, ResultCount quickCount); // Быстрая
-                                                                                          //сортировка для одного столбца
-void Sorting(double** matrix, int m, int n); // Результирующая функция, включающая в себя все сортировки
-double** BubbleSort_MatrixExport(double** tempMatrix, int m, int n); // Пузырьковая сортировка для тестирования
-double** SelectionSort_MatrixExport(double** tempMatrix, int m, int n); // Сортировка отбором для тестирования
-double** InsertionSort_MatrixExport(double** tempMatrix, int m, int n); // Сортировка вставкой для тестирования
-double** ShellSort_MatrixExport(double** tempMatrix, int m, int n); // Сортировка Шелла для тестирования
-double** QuickSort_MatrixExport(double** tempMatrix, int n, int left, int right); // Быстрая сортировка для тестирования
-int Maximum(int first, int second); // Возвращение максимального значения
-int Minimum(int first, int second); // Возвращение минимального значения
+ResultCount BubbleSort(double** matrix, int m, int n, ResultCount bubbleCount); // РџСѓР·С‹СЂСЊРєРѕРІР°СЏ СЃРѕСЂС‚РёСЂРѕРІРєР°
+ResultCount SelectionSort(double** matrix, int m, int n, ResultCount selectionCount); // РЎРѕСЂС‚РёСЂРѕРІРєР° РѕС‚Р±РѕСЂРѕРј
+ResultCount InsertionSort(double** matrix, int m, int n, ResultCount insertionCount); // РЎРѕСЂС‚РёСЂРѕРІРєР° РІСЃС‚Р°РІРєРѕР№
+ResultCount ShellSort(double** matrix, int m, int n, ResultCount shellCount); // РЎРѕСЂС‚РёСЂРѕРІРєР° РЁРµР»Р»Р°
+ResultCount QuickSort(double** matrix, int m, int n, int left, int right, ResultCount quickCount); // Р‘С‹СЃС‚СЂР°СЏ СЃРѕСЂС‚РёСЂРѕРІРєР°
+ResultCount QuickSort_working(double** tempMatrix, int j, int n, int left, int right, ResultCount quickCount); // Р‘С‹СЃС‚СЂР°СЏ
+                                                                                          //СЃРѕСЂС‚РёСЂРѕРІРєР° РґР»СЏ РѕРґРЅРѕРіРѕ СЃС‚РѕР»Р±С†Р°
+void Sorting(double** matrix, int m, int n); // Р РµР·СѓР»СЊС‚РёСЂСѓСЋС‰Р°СЏ С„СѓРЅРєС†РёСЏ, РІРєР»СЋС‡Р°СЋС‰Р°СЏ РІ СЃРµР±СЏ РІСЃРµ СЃРѕСЂС‚РёСЂРѕРІРєРё
+double** BubbleSort_MatrixExport(double** tempMatrix, int m, int n); // РџСѓР·С‹СЂСЊРєРѕРІР°СЏ СЃРѕСЂС‚РёСЂРѕРІРєР° РґР»СЏ С‚РµСЃС‚РёСЂРѕРІР°РЅРёСЏ
+double** SelectionSort_MatrixExport(double** tempMatrix, int m, int n); // РЎРѕСЂС‚РёСЂРѕРІРєР° РѕС‚Р±РѕСЂРѕРј РґР»СЏ С‚РµСЃС‚РёСЂРѕРІР°РЅРёСЏ
+double** InsertionSort_MatrixExport(double** tempMatrix, int m, int n); // РЎРѕСЂС‚РёСЂРѕРІРєР° РІСЃС‚Р°РІРєРѕР№ РґР»СЏ С‚РµСЃС‚РёСЂРѕРІР°РЅРёСЏ
+double** ShellSort_MatrixExport(double** tempMatrix, int m, int n); // РЎРѕСЂС‚РёСЂРѕРІРєР° РЁРµР»Р»Р° РґР»СЏ С‚РµСЃС‚РёСЂРѕРІР°РЅРёСЏ
+double** QuickSort_MatrixExport(double** tempMatrix, int n, int left, int right); // Р‘С‹СЃС‚СЂР°СЏ СЃРѕСЂС‚РёСЂРѕРІРєР° РґР»СЏ С‚РµСЃС‚РёСЂРѕРІР°РЅРёСЏ
+int Maximum(int first, int second); // Р’РѕР·РІСЂР°С‰РµРЅРёРµ РјР°РєСЃРёРјР°Р»СЊРЅРѕРіРѕ Р·РЅР°С‡РµРЅРёСЏ
+int Minimum(int first, int second); // Р’РѕР·РІСЂР°С‰РµРЅРёРµ РјРёРЅРёРјР°Р»СЊРЅРѕРіРѕ Р·РЅР°С‡РµРЅРёСЏ

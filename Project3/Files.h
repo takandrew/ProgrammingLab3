@@ -6,14 +6,14 @@
 #include<Windows.h>
 using namespace std;
 
-bool FileExist(string path); // Проверка существования файла
-void FileWriteData(int n, int m, double **matrix); // Запись исходных данных в файл
-int FileReadLineSize(string path); // Чтение длины строки матрицы из файла
-int FileReadColumnSize(string path); // Чтение длины столбца матрицы из файла
-double** FileReadMatrix(int n, int m, double **matrix, string path); // Чтение значений элементов матрицы из файла
+bool FileExist(string path); // РџСЂРѕРІРµСЂРєР° СЃСѓС‰РµСЃС‚РІРѕРІР°РЅРёСЏ С„Р°Р№Р»Р°
+void FileWriteData(int n, int m, double **matrix); // Р—Р°РїРёСЃСЊ РёСЃС…РѕРґРЅС‹С… РґР°РЅРЅС‹С… РІ С„Р°Р№Р»
+int FileReadLineSize(string path); // Р§С‚РµРЅРёРµ РґР»РёРЅС‹ СЃС‚СЂРѕРєРё РјР°С‚СЂРёС†С‹ РёР· С„Р°Р№Р»Р°
+int FileReadColumnSize(string path); // Р§С‚РµРЅРёРµ РґР»РёРЅС‹ СЃС‚РѕР»Р±С†Р° РјР°С‚СЂРёС†С‹ РёР· С„Р°Р№Р»Р°
+double** FileReadMatrix(int n, int m, double **matrix, string path); // Р§С‚РµРЅРёРµ Р·РЅР°С‡РµРЅРёР№ СЌР»РµРјРµРЅС‚РѕРІ РјР°С‚СЂРёС†С‹ РёР· С„Р°Р№Р»Р°
 void FileWriteResult(int m, int n, double** matrix, ResultCount bubleCount, ResultCount selectionCount,
-	ResultCount insertionCount, ResultCount shellCount, ResultCount quickCount); // Запись результата программы в файл
-bool ReadOnlyChecking(string path); //Функция, проверяющая, является ли файл доступным только для чтения. Принимает путь к файлу.
-bool FileCorrectChecking(string path); //Функция, проверяющая корректность файла
-bool FileReadCorrectChecking(string path); //Функция, проверяющая корректность файла, из которого считывают данные
-bool FileOpenChecking(string path); // Функция, проверяющая открытие файла
+	ResultCount insertionCount, ResultCount shellCount, ResultCount quickCount); // Р—Р°РїРёСЃСЊ СЂРµР·СѓР»СЊС‚Р°С‚Р° РїСЂРѕРіСЂР°РјРјС‹ РІ С„Р°Р№Р»
+bool ReadOnlyChecking(string path); //Р¤СѓРЅРєС†РёСЏ, РїСЂРѕРІРµСЂСЏСЋС‰Р°СЏ, СЏРІР»СЏРµС‚СЃСЏ Р»Рё С„Р°Р№Р» РґРѕСЃС‚СѓРїРЅС‹Рј С‚РѕР»СЊРєРѕ РґР»СЏ С‡С‚РµРЅРёСЏ. РџСЂРёРЅРёРјР°РµС‚ РїСѓС‚СЊ Рє С„Р°Р№Р»Сѓ.
+bool FileCorrectChecking(string path); //Р¤СѓРЅРєС†РёСЏ, РїСЂРѕРІРµСЂСЏСЋС‰Р°СЏ РєРѕСЂСЂРµРєС‚РЅРѕСЃС‚СЊ С„Р°Р№Р»Р°
+bool FileReadCorrectChecking(string path); //Р¤СѓРЅРєС†РёСЏ, РїСЂРѕРІРµСЂСЏСЋС‰Р°СЏ РєРѕСЂСЂРµРєС‚РЅРѕСЃС‚СЊ С„Р°Р№Р»Р°, РёР· РєРѕС‚РѕСЂРѕРіРѕ СЃС‡РёС‚С‹РІР°СЋС‚ РґР°РЅРЅС‹Рµ
+bool FileOpenChecking(string path); // Р¤СѓРЅРєС†РёСЏ, РїСЂРѕРІРµСЂСЏСЋС‰Р°СЏ РѕС‚РєСЂС‹С‚РёРµ С„Р°Р№Р»Р°
